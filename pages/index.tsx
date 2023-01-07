@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const response: any = await fetch(
+        const response = await fetch(
           "http://54.254.213.196:11001/v1/articles",
           {
             headers: {
@@ -69,10 +69,10 @@ export default function Home() {
                 </Typography>
               </Box>
               <Box sx={{ typography: "body1", fontWeight: "bold" }}>
-              {article.description}
+              {article.status}
               </Box>
               <Typography variant="body2" component="span">
-              {article.content}
+              {article.description}
               </Typography>
             </Grid>
           ))}

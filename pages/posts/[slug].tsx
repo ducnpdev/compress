@@ -14,7 +14,7 @@ export default function PostDetail() {
     if (typeof(slug) !== "undefined") {
       (async () => {
         try {
-          const response: any = await fetch(
+          const response = await fetch(
             "http://54.254.213.196:11001/v1/article?uuid=" + slug,
             {
               headers: {
@@ -69,7 +69,7 @@ export default function PostDetail() {
             </Box>
           </Stack>
           <Box sx={{ mt: 10 }} className="content">
-            {article.content}
+            <div dangerouslySetInnerHTML={{__html: article.content}}></div>
           </Box>
         </Grid>
       </Grid>
