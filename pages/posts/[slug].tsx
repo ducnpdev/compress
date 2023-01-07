@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import styles from "./styles.module.scss";
@@ -8,7 +8,35 @@ import Header from "../../components/Header";
 
 export default function PostDetail() {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
+  const [article, setArticle]: any = useState([]);
+
+  useEffect(() => {
+    if (typeof(slug) !== "undefined") {
+      (async () => {
+        try {
+          const response: any = await fetch(
+            "http://54.254.213.196:11001/v1/article?uuid=" + slug,
+            {
+              headers: {
+                Authorization:
+                  "Bearer eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI5MjQ3MDQxMDMsImlzcyI6InNpbXBzb24iLCJ1c2VybmFtZSI6IjEyMTUxMTMzIiwicmVmZXNoX3Rva2VuIjoiIiwidXNlcl9pZCI6MSwiZW1haWwiOiIiLCJwaG9uZSI6IjAzMzkxMTIzMzMifQ.nvonRJfcQckDcL4dYRP_h3ua5Onp4EdwBn84q-kimkyFz2syJ0iRxFR9QJEX5tOCIR9iBE3efwnN6oHvJhre6iked-0l0Xg0I5fZbtMfMvckb3KXBnwIdIo31X8oAwOsNjLSTTjL33h8TUiOr03pHHzAdG3v4KAufD59YZYMJoHBKHyy69kJ8poC_F0J9NDNd_hXY5p_W25UfgY6wPiQ44tSj4I-Jwh7Np-Ms2bIvVQAyrXA1robqy7LlETez_k07jZrWgMm_0GDIFq9o_-pGGsb3e25er8yxdorkWb_X_anZFa5ikP_b9ViAU-rrR0UjPDyEnoBbMWVF9okWBoCoDYchkhrVruXDrNXPn_uA0gyXuNs0ux7waN-tl0zBwmn7Fmt8_ZVU4GC0pcW33rk896jQYIYsCOv1G5WGAfWhUoaaA9qkzmuock2b3y-IIJ-_ySUjCfabuQ-exXuptDImX0Ybf8k3lrDSOHpNabhl84JqcHEp3ZpBP5mJwpGJqhlOjy_hBoMdmA13Ox7HJQVNPpG2Liyi4n3LZb52KWLNh6-Ats8h2157kSu8YdRwTRl2AhhEQaDZTN0QgI8InT7uYhqXybCEF5mIwgvpMVUWcFe4zz1aRvyL51iKI4vQWRe-g8Q31PQpoqUTy3D7-mMNEJn-wQ6gQu5oZGjUpko37A",
+              },
+            }
+          );
+          const res = await response.json();
+          if (res.code == "00") {
+            setArticle(res.data);
+          }
+
+          return;
+        } catch (error) {
+          console.log("There was an error");
+        }
+      })();
+    }
+  }, [slug]);
+
   return (
     <>
     <Header />
@@ -19,7 +47,7 @@ export default function PostDetail() {
           <Box
             sx={{ typography: "h4", textAlign: "center", fontWeight: "bold" }}
           >
-            Building a carousel with drag and drop in React Native {id}
+            Building a carousel with drag and drop in React Native
           </Box>
           <Box
             sx={{ pt: 4, typography: "h4" }}
@@ -34,9 +62,9 @@ export default function PostDetail() {
             spacing={2}
             sx={{ mt: 4, justifyContent: "center" }}
           >
-            <Avatar alt="Doraemon" src="/asset/images/doraemon.png" />
+            <Avatar alt="Doraemon" src={article.image} />
             <Box sx={{ typography: "body1", lineHeight: "2.5rem" }}>
-              Tác giả
+              {article.author}
             </Box>
             <Box sx={{ typography: "body1", lineHeight: "2rem" }}>.</Box>
             <Box sx={{ typography: "body1", lineHeight: "2.5rem" }}>
@@ -44,11 +72,7 @@ export default function PostDetail() {
             </Box>
           </Stack>
           <Box sx={{ mt: 10 }} className="content">
-            Content {id} <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-            similique exercitationem dolore possimus deleniti nobis sint.
-            Ratione ex minus accusantium, explicabo, officiis autem at tempore
-            perspiciatis hic qui recusandae esse.
+            {article.content}
           </Box>
         </Grid>
       </Grid>
