@@ -1,0 +1,20 @@
+.banner {
+  height: 20%;
+  min-height: 12rem;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.image {
+  width: 100%;
+}
+
+.title-box {
+  border: 1px solid #b3b6bb75;
+  background: #c5c5c533;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+}

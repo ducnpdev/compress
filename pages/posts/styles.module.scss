@@ -1,0 +1,21 @@
+.root {
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.banner {
+  height: 20%;
+  min-height: 12rem;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.description {
+  line-height: 2.25rem;
+  color: #98a4bb;
+  text-align: center;
+}
