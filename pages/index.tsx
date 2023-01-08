@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useState, useEffect} from 'react';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import styles from "./styles.module.scss";
@@ -10,6 +11,12 @@ import Container from "@mui/material/Container";
 import Header from "../components/Header";
 
 export default function Home() {
+
+  const [articles,setArticles] = useState([])
+  useEffect(()=>{
+    console.log('homepage')
+  },[])
+
   return (
     <Box sx={{ flexGrow: 1 }} className={styles["root"]}>
       <Header />

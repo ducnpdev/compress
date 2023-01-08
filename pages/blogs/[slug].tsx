@@ -15,7 +15,7 @@ export default function PostDetail() {
     <Container maxWidth="lg">
       <Grid container spacing={{ xs: 4, md: 4 }}>
         <Grid item xs={12}>
-          {/* <Box sx={{ mb: 8 }} className={styles["banner"]} /> */}
+          <Box sx={{ mb: 8 }} className={styles["banner"]} />
           <Box
             sx={{ typography: "h4", textAlign: "center", fontWeight: "bold" }}
           >
