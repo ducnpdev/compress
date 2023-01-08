@@ -30,7 +30,7 @@ function Header(props: any) {
             variant="h1"
             sx={{ fontSize: "1.8rem", color: "text.primary" }}
           >
-            NORDIC ROSE
+            OPEN DEV
           </Typography>
         </Link>
       </NextLink>

@@ -16,14 +16,14 @@ export const navigation = [
       strict: true,
     },
   },
-  {
-    name: "blog",
-    label: "BLOG",
-    pathConfig: {
-      path: BLOG_PATH,
-      exact: false,
-    },
-  },
+  // {
+  //   name: "blog",
+  //   label: "BLOG",
+  //   pathConfig: {
+  //     path: BLOG_PATH,
+  //     exact: false,
+  //   },
+  // },
   {
     name: "about",
     label: "ABOUT",
@@ -33,22 +33,22 @@ export const navigation = [
       strict: true,
     },
   },
-  {
-    name: "links",
-    label: "LINKS",
-    pathConfig: {
-      path: LINKS_PATH,
-      exact: true,
-      strict: true,
-    },
-  },
-  {
-    name: "projects",
-    label: "PROJECTS",
-    pathConfig: {
-      path: PROJECTS_PATH,
-      exact: true,
-      strict: true,
-    },
-  },
+  // {
+  //   name: "links",
+  //   label: "LINKS",
+  //   pathConfig: {
+  //     path: LINKS_PATH,
+  //     exact: true,
+  //     strict: true,
+  //   },
+  // },
+  // {
+  //   name: "projects",
+  //   label: "PROJECTS",
+  //   pathConfig: {
+  //     path: PROJECTS_PATH,
+  //     exact: true,
+  //     strict: true,
+  //   },
+  // },
 ];

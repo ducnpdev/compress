@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "./styles.module.scss";
 import { Avatar, Grid, Stack, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
+import Header from "../../components/Header";
 
 export default function PostDetail() {
   const router = useRouter();
@@ -37,10 +38,12 @@ export default function PostDetail() {
   }, [slug]);
 
   return (
+    <>
+    <Header />
     <Container maxWidth="lg">
       <Grid container spacing={{ xs: 4, md: 4 }}>
         <Grid item xs={12}>
-          <Box sx={{ mb: 8 }} className={styles["banner"]} />
+          {/* <Box sx={{ mb: 8 }} className={styles["banner"]} /> */}
           <Box
             sx={{ typography: "h4", textAlign: "center", fontWeight: "bold" }}
           >
@@ -74,5 +77,6 @@ export default function PostDetail() {
         </Grid>
       </Grid>
     </Container>
+    </>
   );
 }
