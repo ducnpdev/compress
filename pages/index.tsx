@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { Typography } from "@mui/material";
 import Link from "next/link";
 import Container from "@mui/material/Container";
+import Header from "../components/Header";
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
@@ -35,11 +36,7 @@ export default function Home() {
 
   return (
     <Box sx={{ flexGrow: 1 }} className={styles["root"]}>
-      <Box sx={{ mb: 8 }} className={styles["banner"]}>
-        <Typography gutterBottom variant="h4" component="div">
-          Blog
-        </Typography>
-      </Box>
+      <Header />
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 4, md: 4 }}>
           {articles.map((article: any) => (
