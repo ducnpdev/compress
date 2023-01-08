@@ -7,15 +7,12 @@ import download from "public/asset/images/download.png";
 import { Typography } from "@mui/material";
 import Link from "next/link";
 import Container from "@mui/material/Container";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
     <Box sx={{ flexGrow: 1 }} className={styles["root"]}>
-      <Box sx={{ mb: 8 }} className={styles["banner"]}>
-        <Typography gutterBottom variant="h4" component="div">
-          Blog
-        </Typography>
-      </Box>
+      <Header />
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 4, md: 4 }}>
           {Array.from(Array(6)).map((_, index) => (
