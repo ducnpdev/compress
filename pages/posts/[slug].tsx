@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import styles from "./styles.module.scss";
@@ -8,7 +8,38 @@ import Header from "../../components/Header";
 
 export default function PostDetail() {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
+  const [article, setArticle]: any = useState([]);
+
+  useEffect(() => {
+    if (typeof(slug) !== "undefined") {
+      const arr = slug.toString().split("-");
+      const uuid = arr[arr.length-1];
+      console.log("detail-uuid:",uuid);
+      (async () => {
+        try {
+          const response = await fetch(
+            "http://54.254.213.196:11001/v1/article?uuid=" + uuid,
+            {
+              headers: {
+                Authorization:
+                  "Bearer ",
+              },
+            }
+          );
+          const res = await response.json();
+          if (res.code == "00") {
+            setArticle(res.data);
+          }
+
+          return;
+        } catch (error) {
+          console.log("There was an error");
+        }
+      })();
+    }
+  }, [slug]);
+
   return (
     <>
     <Header />
@@ -19,7 +50,7 @@ export default function PostDetail() {
           <Box
             sx={{ typography: "h4", textAlign: "center", fontWeight: "bold" }}
           >
-            Building a carousel with drag and drop in React Native {id}
+            Building a carousel with drag and drop in React Native
           </Box>
           <Box
             sx={{ pt: 4, typography: "h4" }}
@@ -34,9 +65,9 @@ export default function PostDetail() {
             spacing={2}
             sx={{ mt: 4, justifyContent: "center" }}
           >
-            <Avatar alt="Doraemon" src="/asset/images/doraemon.png" />
+            <Avatar alt="Doraemon" src={article.image} />
             <Box sx={{ typography: "body1", lineHeight: "2.5rem" }}>
-              Tác giả
+              {article.author}
             </Box>
             <Box sx={{ typography: "body1", lineHeight: "2rem" }}>.</Box>
             <Box sx={{ typography: "body1", lineHeight: "2.5rem" }}>
@@ -44,11 +75,7 @@ export default function PostDetail() {
             </Box>
           </Stack>
           <Box sx={{ mt: 10 }} className="content">
-            Content {id} <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-            similique exercitationem dolore possimus deleniti nobis sint.
-            Ratione ex minus accusantium, explicabo, officiis autem at tempore
-            perspiciatis hic qui recusandae esse.
+            <div dangerouslySetInnerHTML={{__html: article.content}}></div>
           </Box>
         </Grid>
       </Grid>
