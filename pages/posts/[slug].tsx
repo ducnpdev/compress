@@ -13,10 +13,13 @@ export default function PostDetail() {
 
   useEffect(() => {
     if (typeof(slug) !== "undefined") {
+      const arr = slug.toString().split("-");
+      const uuid = arr[arr.length-1];
+      console.log("detail-uuid:",uuid);
       (async () => {
         try {
           const response = await fetch(
-            "http://54.254.213.196:11001/v1/article?uuid=" + slug,
+            "http://54.254.213.196:11001/v1/article?uuid=" + uuid,
             {
               headers: {
                 Authorization:

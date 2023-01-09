@@ -41,7 +41,7 @@ export default function Home() {
         <Grid container spacing={{ xs: 4, md: 4 }}>
           {articles.map((article: any) => (
             <Grid item xs={12} sm={6} md={4} key={article.uuid}>
-              <Link href={"/posts/" + article.uuid}>
+              <Link href={"/posts/" + article.slug+ "-" +article.uuid}>
                 <Box
                   component="img"
                   sx={{
@@ -50,7 +50,8 @@ export default function Home() {
                     objectFit: "cover"
                   }}
                   alt={article.slug}
-                  src={article.image}
+                  // src={article.image}
+                  src={"https://upload.wikimedia.org/wikipedia/commons/4/42/Blog_%281%29.jpg?20120511031542"}
                 />
               </Link>
               <Box sx={{ py: 2 }}>
